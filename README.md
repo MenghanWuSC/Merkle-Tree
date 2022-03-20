@@ -56,3 +56,34 @@ Output text stream:
 Reference: [RFC 9162 - 2.1.5. Example](https://datatracker.ietf.org/doc/html/rfc9162#section-2.1.5)
 ## Test
 ...
+
+
+### buildmtree.py
+...
+```
+./buildmtree.py [alice,bob,carlol,david]
+cat merkle.tree
+```
+![buildmtree](/img/buildmtree.png)
+
+### checkinclusion.py
+...
+```
+./checkinclusion.py richard
+./checkinclusion.py david
+```
+![checkinclusion](/img/checkinclusion.png)
+
+### checkconsitency.py
+...
+```
+./checkconsitency.py [alice,bob,carlol,david] [alice,bob,carlol,david,eve,fred]
+cat merkle.trees
+./checkconsitency.py [alice,bob,carlol,david] [alice,bob,david,eve,fred]
+cat merkle.trees
+./checkconsitency.py [alice,bob,carlol,david] [alice,bob,carol,eve,fred,davis]
+cat merkle.trees
+```
+![checkconsitency_01](/img/checkconsitency_01.png)
+![checkconsitency_02](/img/checkconsitency_02.png)
+![checkconsitency_03](/img/checkconsitency_03.png)
