@@ -5,7 +5,7 @@ Merkle Tree implementation in Python.
 > Python 3.8.9 (default, Oct 26 2021, 07:25:53) [Clang 13.0.0 (clang-1300.0.29.30)] on darwin
 
 ## Programs
-There are three progams in this project:
+There are three programs in this project:
 1. buildmtree.py
 2. checkinclusion.py
 3. checkconsitency.py
@@ -30,7 +30,7 @@ Used global data:
 
 ### buildmtree.py
 To generate Merkle Tree from given command-line arguments, record the content of the tree into file '*merkle.tree*'.
-- `buildMerkleTree` function to build Merkle Tree with `MerkleTree` `MerkleTreeRoot` using **bottom-up** method
+- `buildMerkleTree` function to build Merkle Tree with `MerkleTree`, `MerkleTreeRoot` using **bottom-up** method
 - `BFS_binaryTree` function to plot BFS order with `MerkleTreeBFS`
 - `drawMerkleTree` function to save Merkle Tree into file '*merkle.tree*' by BFS order
 
@@ -56,7 +56,6 @@ Output text stream:
 Reference: [RFC 9162 - 2.1.5. Example](https://datatracker.ietf.org/doc/html/rfc9162#section-2.1.5)
 
 ## Test
-...
 
 ### buildmtree.py
 Since this implementation of Merkle Tree **NOT balanced**, the number of leaf nodes **equals** given command-line arguments.
