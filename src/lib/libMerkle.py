@@ -199,19 +199,19 @@ class MerkleTree:
         return inclusionProof
 
 
-    def getConsistencyProof(self, new_tree) -> list:
+    def getConsistencyProof(self, cmp_tree) -> list:
         """
             Get the Consistency Proof #RFC-9162 2.1.4
         """
-        assert new_tree != None
+        assert cmp_tree.nodeDict != {} and cmp_tree.MerkleTreeRoot.key != None
         # Initialization: the required proof of given tree
         consistencyProof = []
-        # Old root is found within the new Merkle Tree
-        if new_tree.nodeDict.get(self.MerkleTreeRoot.key) != None:
-            consistencyProof.extend(new_tree.getInclusionProof(self.MerkleTreeRoot.key))
-        # Old root is NOT found (& NOT completed) within the new Merkle Tree
+        # Self root is found within the compared Merkle Tree
+        if cmp_tree.nodeDict.get(self.MerkleTreeRoot.key) != None:
+            consistencyProof.extend(cmp_tree.getInclusionProof(self.MerkleTreeRoot.key))
+        # Self root is NOT found (& NOT completed) within the compared Merkle Tree
         else:
             consistencyProof.append(self.nodeDict[self.MerkleTreeRoot.right].hash)
-            consistencyProof.extend(new_tree.getInclusionProof(self.MerkleTreeRoot.right))
+            consistencyProof.extend(cmp_tree.getInclusionProof(self.MerkleTreeRoot.right))
         # Finished and return the answer
         return consistencyProof

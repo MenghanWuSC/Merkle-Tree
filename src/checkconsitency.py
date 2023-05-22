@@ -9,13 +9,10 @@ def checkSubarray(treeNodes1:list, treeNodes2:list) -> bool:
     """
         Preliminarily check two sets if one is another's rigorous subset.
     """
-    # Pre-condition
-    list_long = []
-    list_short = []
-    verified = 0
     # Divide given lists by length
-    list_long = treeNodes1 if len(treeNodes1) > len(treeNodes2) else treeNodes2
-    list_short = treeNodes2 if len(treeNodes1) > len(treeNodes2) else treeNodes1
+    list_long = list(treeNodes1) if len(treeNodes1) > len(treeNodes2) else list(treeNodes2)
+    list_short = list(treeNodes2) if len(treeNodes1) > len(treeNodes2) else list(treeNodes1)
+    verified = 0
     # Consider the shorter length
     for index_short in range(0, len(list_short)):
         # Verify the order of elements from head to the shorter's tail
@@ -45,8 +42,8 @@ if __name__ == "__main__":
 
     try:
         # 1. To build two Merkle Trees
-        a_tree = lib.libMerkle.MerkleTree(nodes=treeNodes_old)
-        b_tree = lib.libMerkle.MerkleTree(nodes=treeNodes_new)
+        a_tree = lib.libMerkle.MerkleTree(initial=treeNodes_old)
+        b_tree = lib.libMerkle.MerkleTree(initial=treeNodes_new)
         # 2. To save the derived results
         a_tree.saveMerkleTree_BFS("a_merkle.tree")
         b_tree.saveMerkleTree_BFS("b_merkle.tree")
@@ -64,7 +61,7 @@ if __name__ == "__main__":
             sys.exit(1)
         # 4. To get the Consistency Proof
         consistencyProof = a_tree.getConsistencyProof(b_tree)
-        print("yes olderRoot:["+a_tree.MerkleTreeRoot.hash+"]", consistencyProof, "newerRoot:["+b_tree.MerkleTreeRoot.hash+"]")
+        print(f"yes olderRoot:[{a_tree.MerkleTreeRoot.hash}] {consistencyProof} newerRoot:[{b_tree.MerkleTreeRoot.hash}]")
     except Exception as e:
         print(type(e), e)
         parser.print_usage()
