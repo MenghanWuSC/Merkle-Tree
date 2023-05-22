@@ -16,10 +16,8 @@ if __name__ == "__main__":
 
     try:
         # 1. To load the existing Merkle Tree
-        a_tree = lib.libMerkle.MerkleTree(path_tree="merkle.tree")
-        # 2. To prepare the connections within Merkle Tree
-        a_tree_connect = a_tree.getConnection()
-        # 3. To get the Inclusion Proof
+        a_tree = lib.libMerkle.MerkleTree(initial="merkle.tree")
+        # 2. To get the Inclusion Proof
         inclusionProof = a_tree.getInclusionProof(args.inputQuery)
         # *For this project: print additional 'root' hash for proof
         if len(inclusionProof) > 0:

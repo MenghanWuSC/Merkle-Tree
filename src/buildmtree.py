@@ -18,7 +18,7 @@ if __name__ == "__main__":
 
     try:
         # 1. To build a Merkle Tree
-        a_tree = lib.libMerkle.MerkleTree(nodes=treeNodes)
+        a_tree = lib.libMerkle.MerkleTree(initial=treeNodes)
         # 2. To save the derived results
         a_tree.saveMerkleTree_BFS("merkle.tree")
     except Exception as e:
